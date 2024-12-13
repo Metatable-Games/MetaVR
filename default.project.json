@@ -1,0 +1,22 @@
+{
+  "name": "MetaVR",
+  "tree": {
+    "$className": "DataModel",
+
+    "ReplicatedStorage": {
+      "$ignoreUnknownInstances": true,
+      "Packages": {
+        "$path": "src/MetaVR",
+        "$ignoreUnknownInstances": true
+      }
+    },
+
+    "ServerScriptService": {
+      "$ignoreUnknownInstances": true,
+      "Server": {
+        "$path": "src/Example",
+        "$ignoreUnknownInstances": true
+      }
+    }
+  }
+}
