@@ -5,12 +5,7 @@
 -- License: MIT
 -- GitHub: https://github.com/Metatable-Games/MetaVR
 
-export type BaseVRCameraType = {
-    Enabled: boolean,
+local VRWorldPhysics = {}
+VRWorldPhysics.__index = VRWorldPhysics
 
-    Enable: () -> (),
-    Disable: () -> (),
-    Update: () -> (),
-}
-
-return {}
+return VRWorldPhysics;

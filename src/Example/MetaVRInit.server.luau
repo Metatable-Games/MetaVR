@@ -14,6 +14,11 @@ local Configuration = {
     RobloxVRControllerPreviewEnabled = true,
     RobloxVRLaserEnabled = true,
 
+	WorldPhysics = {
+		GrabbingEnabled = true;
+		GrabbingInstanceTag = "MetaVR_GrabableObject";
+	};
+
 	Menu = {
 		KeybindEnabled = true,
 		Keybind = Enum.KeyCode.ButtonX,
@@ -21,9 +26,11 @@ local Configuration = {
 
 	Movement = {
 		EnabledMovementMethods = {
+			-- Movement modes players can select in the Meta VR Menu.
+
 			"Teleport",
 			"SmoothLocomotion",
-			"Disabled",
+			--"Disabled",
 		},
 
 		DefaultMovementMethod = "SmoothLocomotion",
@@ -36,15 +43,20 @@ local Configuration = {
 	Camera = {
 		--If true, Workspace.CurrentCamera.HeadLocked will be locked to false.
 		DisableHeadLocked = false,
-
+		
 		--Disables FadeOutViewOnCollision (black screen when in parts).
 		DisableFadeOutViewOnCollision = false,
 
 		EnabledCameraOptions = {
+			-- Camera modes players can select in the Meta VR Menu.
+
 			"Default",
 			"ThirdPersonTrack",
-			"Disabled",
+
+			--"Freecam",
+			--"Disabled",
 		},
+		
 		DefaultCameraOption = "Default",
         MetaVRCameraEnabled = true,
 	},

@@ -11,6 +11,8 @@ local RunService = game:GetService("RunService")
 local Classes: Folder = script:WaitForChild("Classes")
 local Packages: Folder = script:WaitForChild("Packages")
 
+local API = require(Packages:WaitForChild("API"))
+
 local LatestVersion: string = "1.0.0"
 
 local MetaVR = {
@@ -26,13 +28,21 @@ MetaVR.__index = MetaVR
 MetaVR.Server.__index = MetaVR.Server
 MetaVR.Client.__index = MetaVR.Client
 
-export type MetaVR = {} & typeof(setmetatable({}, MetaVR))
+export type MetaVR = {
+	Configuration: any,
+	Inited: boolean,
+	API: API.API,
+} & typeof(setmetatable({}, MetaVR))
 
 function MetaVR.new(): MetaVR
 	if RunService:IsServer() then
-		return setmetatable({}, MetaVR.Server)
+		return setmetatable({
+			API = API.new(),
+		}, MetaVR.Server)
 	else
-		return setmetatable({}, MetaVR.Client)
+		return setmetatable({
+			API = API.new(),
+		}, MetaVR.Client)
 	end
 end
 
@@ -95,6 +105,10 @@ function MetaVR.Client:Init()
 	end
 
 	self.Configuration = HttpService:JSONDecode(script:FindFirstChild("MetaConfiguration").Value)
+
+	self.VRInputService = require(Classes:WaitForChild("VRInputService")).new()
+	self.VRCharacter = require(Classes:WaitForChild("VRCamera")).new(self)
+	self.VRCharacter:Init()
 
 	self.VRCamera = require(Classes:WaitForChild("VRCamera")).new(self)
 	self.IKAvatarGestures = require(Classes:WaitForChild("IKAvatarGestures")).new(self)

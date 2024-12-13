@@ -5,12 +5,15 @@
 -- License: MIT
 -- GitHub: https://github.com/Metatable-Games/MetaVR
 
-export type BaseVRCameraType = {
-    Enabled: boolean,
+local API = {}
+API.__index = API
 
-    Enable: () -> (),
-    Disable: () -> (),
-    Update: () -> (),
-}
+export type API = {
+    new: () -> API,
+} & typeof(setmetatable({}, API))
 
-return {}
+function API.new(): API
+    return setmetatable({}, API)
+end
+
+return API
